@@ -1,14 +1,53 @@
-{
-  "type": "service_account",
-  "project_id": "farmgatesentinel",
-  "private_key_id": "7dbcc6ac71cbd745543b3fc11a508954f85db03d",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCtkcZ2KoHYMSZ/\ndnp9hPwej3LpK7Qj9c3waBr09W6TPKi7BW2kpskdP1lQr3nnVplf98VHa3Jmqycn\nBrI/xQX/HmFkCgFaZUlJDGadxIk/zq5ze4fRigS3y4Z5oT7EWWbvQA+aNcgWldpz\nlZWyZvKiZmBP/3ZGCo8mc91DACaScKjSRz/cRQpjUT6SuRHdXfPCRZG1a+zknLIJ\nmEavMOSk8rews65OkvOGizVkK1l4Txc59J87y3hBOQDlRbhJd5JQ7f/4p59/RZNC\nEwxN/2rLopkQ8gB6/z7ipezbEKnfCtambYnzI7fZOKSLyG/6qVlw2M+UxY/y3TcX\nOXRym7/NAgMBAAECggEAAUfPioSiw5kNOyiBG9b00zbktqKraA6Cr/Dcrgz3fV+X\nsRWHqwzN9AjJHGbHA/VoGUSnMHEy/V3q4odSnlTSSAEN3+KRAv03TrIoOaa/Cnj4\nYYK6TEnz4fU+7zvIzkMIluBGnTEjYkNFws+KNLA8vwT5Ve3BDiA60SJOshVYs4Dd\nKbSrb3MvDqGU0D/fe6uaflZ8YFIo3Ub5KywdwRgd39OKToFVi+o2UnCFSj+5QhUI\n00MNro9N+eEF2QG0ZLY114SdZrXdlfwW1jnHhaLBbKOzSNU7lRagWbdnzxESuGJQ\nj55KBXkFOFEXcvOlAhOLHKcnlxKljAUGdblE1OwjsQKBgQDU6+GX23X8jWG6Zm64\nosQoX0atvgvEHOAzw6FcbVynPyr14PtLulRxsoJA+8BWX2DgegUA/pGcvewHLTJo\n0d7ELNb9yJFflTOsGFA6p59TfBnPL/TaxjpsXIH9jMFK2bfnfVP9g3EpMcCwX2HO\n3yQNOAtIFjGITHagtgoN+Wt3RQKBgQDQr69xZ3ag3L7ViWD+Iv5OuhrW1PDfN4p8\nm5aXBL5Ii/KS7dNcW7flSe0JLedvNm0SUu3LcvmB71BMCVJe3brthhCymEBzWjm1\nOdkwvDOVYXhqSpwIrgo3NP7buuoXCQMDUOO7r3oQ/ZuNbszWu2TmdY0R1MHEDd/Y\n9hxPVw2K6QKBgQC9HRlNCNa9z1Fq/wn+okr51M3xCWhn8oHMWEjc0CHIRpnAs+hf\ndYsFRVjdoP1Pef2Qw6/oFzN79VBLe4BXi3iB45W86UT9kYbIpvuzbShdPU+rL1wa\naJCBqJSogDk6YzAtwqoz9Ggw/4i23rD/zj+2If4bM+MgvVFsIuPBT7R8xQKBgQCh\nMxSSxRkdqWbADB6gMOfAaIHS8SofQwf2uTjZ7xANeg0m8g8SiMbElxZCwPLFNYWL\nYgPN5EJX3ERqd8jo/t4mHClJy9H9SPTKyKS8wKQX//LEKF3fVpENlCJKGVg58vwg\n05sWn7Xq6fv+hFg2hwqp+qO94lrK1uzS60lzAAu2AQKBgCf8HJ3oeooS3MwspLAq\nT/TziIXdwn8UFWFv4CTHrLvjffitJlSYI9EP/jhjHhmXBIGO4nHMayrE2dZh+3S2\n99VdMTaCc7OEtLFObBFuQV2GcuVJXWq/Vs0YOr3N2z6+VAiuKrT6ImDAN0TwsznE\nJk9Pz/+BRnOlgycpz50uLgmd\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-fbsvc@farmgatesentinel.iam.gserviceaccount.com",
-  "client_id": "111429231170163716274",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40farmgatesentinel.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
+name: Predator Alert
 
+on:
+  push:
+    paths:
+      - 'imgs/**'
+
+jobs:
+  notify_firebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Firebase Admin
+        run: pip install firebase-admin
+
+      - name: Send Notification
+        env:
+          FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python -c "
+          import os
+          import json
+          import firebase_admin
+          from firebase_admin import credentials, messaging
+
+          # Initialize
+          key_json = os.environ['FIREBASE_KEY']
+          cred = credentials.Certificate(json.loads(key_json))
+          firebase_admin.initialize_app(cred)
+
+          # Send Alert
+          msg = messaging.Message(
+              notification=messaging.Notification(
+                  title='Predator Alert',
+                  body='New activity detected on the farm.'
+              ),
+              topic='farm_alerts'
+          )
+          
+          try:
+              response = messaging.send(msg)
+              print('SUCCESS: Notification sent.')
+          except Exception as e:
+              print(f'ERROR: {e}')
+              exit(1)
+          "
