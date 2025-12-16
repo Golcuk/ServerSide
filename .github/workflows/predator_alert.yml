@@ -1,90 +1,14 @@
-// lib/main.dart
-
-import 'package:flutter/material.dart';
-import 'login_page.dart';
-import 'home_page.dart';
-import 'user_store.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart'; // NEW IMPORT
-
-// 1. Background Handler: This runs even if the app is closed!
-@pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  print("Handling a background message: ${message.messageId}");
+{
+  "type": "service_account",
+  "project_id": "farmgatesentinel",
+  "private_key_id": "7dbcc6ac71cbd745543b3fc11a508954f85db03d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCtkcZ2KoHYMSZ/\ndnp9hPwej3LpK7Qj9c3waBr09W6TPKi7BW2kpskdP1lQr3nnVplf98VHa3Jmqycn\nBrI/xQX/HmFkCgFaZUlJDGadxIk/zq5ze4fRigS3y4Z5oT7EWWbvQA+aNcgWldpz\nlZWyZvKiZmBP/3ZGCo8mc91DACaScKjSRz/cRQpjUT6SuRHdXfPCRZG1a+zknLIJ\nmEavMOSk8rews65OkvOGizVkK1l4Txc59J87y3hBOQDlRbhJd5JQ7f/4p59/RZNC\nEwxN/2rLopkQ8gB6/z7ipezbEKnfCtambYnzI7fZOKSLyG/6qVlw2M+UxY/y3TcX\nOXRym7/NAgMBAAECggEAAUfPioSiw5kNOyiBG9b00zbktqKraA6Cr/Dcrgz3fV+X\nsRWHqwzN9AjJHGbHA/VoGUSnMHEy/V3q4odSnlTSSAEN3+KRAv03TrIoOaa/Cnj4\nYYK6TEnz4fU+7zvIzkMIluBGnTEjYkNFws+KNLA8vwT5Ve3BDiA60SJOshVYs4Dd\nKbSrb3MvDqGU0D/fe6uaflZ8YFIo3Ub5KywdwRgd39OKToFVi+o2UnCFSj+5QhUI\n00MNro9N+eEF2QG0ZLY114SdZrXdlfwW1jnHhaLBbKOzSNU7lRagWbdnzxESuGJQ\nj55KBXkFOFEXcvOlAhOLHKcnlxKljAUGdblE1OwjsQKBgQDU6+GX23X8jWG6Zm64\nosQoX0atvgvEHOAzw6FcbVynPyr14PtLulRxsoJA+8BWX2DgegUA/pGcvewHLTJo\n0d7ELNb9yJFflTOsGFA6p59TfBnPL/TaxjpsXIH9jMFK2bfnfVP9g3EpMcCwX2HO\n3yQNOAtIFjGITHagtgoN+Wt3RQKBgQDQr69xZ3ag3L7ViWD+Iv5OuhrW1PDfN4p8\nm5aXBL5Ii/KS7dNcW7flSe0JLedvNm0SUu3LcvmB71BMCVJe3brthhCymEBzWjm1\nOdkwvDOVYXhqSpwIrgo3NP7buuoXCQMDUOO7r3oQ/ZuNbszWu2TmdY0R1MHEDd/Y\n9hxPVw2K6QKBgQC9HRlNCNa9z1Fq/wn+okr51M3xCWhn8oHMWEjc0CHIRpnAs+hf\ndYsFRVjdoP1Pef2Qw6/oFzN79VBLe4BXi3iB45W86UT9kYbIpvuzbShdPU+rL1wa\naJCBqJSogDk6YzAtwqoz9Ggw/4i23rD/zj+2If4bM+MgvVFsIuPBT7R8xQKBgQCh\nMxSSxRkdqWbADB6gMOfAaIHS8SofQwf2uTjZ7xANeg0m8g8SiMbElxZCwPLFNYWL\nYgPN5EJX3ERqd8jo/t4mHClJy9H9SPTKyKS8wKQX//LEKF3fVpENlCJKGVg58vwg\n05sWn7Xq6fv+hFg2hwqp+qO94lrK1uzS60lzAAu2AQKBgCf8HJ3oeooS3MwspLAq\nT/TziIXdwn8UFWFv4CTHrLvjffitJlSYI9EP/jhjHhmXBIGO4nHMayrE2dZh+3S2\n99VdMTaCc7OEtLFObBFuQV2GcuVJXWq/Vs0YOr3N2z6+VAiuKrT6ImDAN0TwsznE\nJk9Pz/+BRnOlgycpz50uLgmd\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@farmgatesentinel.iam.gserviceaccount.com",
+  "client_id": "111429231170163716274",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40farmgatesentinel.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
 }
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  // 2. Register the background handler
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-  // 3. Setup Notification Permissions & Subscription
-  final messaging = FirebaseMessaging.instance;
-  
-  // Request permission (Required for iOS, good practice for Android 13+)
-  await messaging.requestPermission(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
-
-  // SUBSCRIBE TO TOPIC: This matches the topic in the GitHub Action
-  await messaging.subscribeToTopic('farm_alerts');
-  print("Subscribed to farm_alerts topic!");
-
-  // 4. Foreground Handler: Listen for messages while app is open
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    print('Got a message whilst in the foreground!');
-    print('Message data: ${message.data}');
-
-    if (message.notification != null) {
-      print('Message also contained a notification: ${message.notification}');
-      // Optional: Show a local dialog or snackbar here
-    }
-  });
-
-  await UserStore.instance.init(); 
-
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'FarmGate Sentinel',
-      theme: ThemeData(
-        fontFamily: 'Inter',
-      ),
-      home: StreamBuilder<User?>(
-        stream: UserStore.instance.authStateChanges,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Scaffold(
-              body: Center(child: CircularProgressIndicator(color: Color(0xFF66BB6A))),
-            );
-          }
-          
-          final firebaseUser = snapshot.data;
-          
-          if (firebaseUser != null) {
-            return HomePage(userName: firebaseUser.uid); 
-          }
-          
-          return const LoginPage();
-        },
-      ),
-    );
-  }
-}
