@@ -1,0 +1,90 @@
+// lib/main.dart
+
+import 'package:flutter/material.dart';
+import 'login_page.dart';
+import 'home_page.dart';
+import 'user_store.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart'; // NEW IMPORT
+
+// 1. Background Handler: This runs even if the app is closed!
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  print("Handling a background message: ${message.messageId}");
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // 2. Register the background handler
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  // 3. Setup Notification Permissions & Subscription
+  final messaging = FirebaseMessaging.instance;
+  
+  // Request permission (Required for iOS, good practice for Android 13+)
+  await messaging.requestPermission(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+
+  // SUBSCRIBE TO TOPIC: This matches the topic in the GitHub Action
+  await messaging.subscribeToTopic('farm_alerts');
+  print("Subscribed to farm_alerts topic!");
+
+  // 4. Foreground Handler: Listen for messages while app is open
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Got a message whilst in the foreground!');
+    print('Message data: ${message.data}');
+
+    if (message.notification != null) {
+      print('Message also contained a notification: ${message.notification}');
+      // Optional: Show a local dialog or snackbar here
+    }
+  });
+
+  await UserStore.instance.init(); 
+
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'FarmGate Sentinel',
+      theme: ThemeData(
+        fontFamily: 'Inter',
+      ),
+      home: StreamBuilder<User?>(
+        stream: UserStore.instance.authStateChanges,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator(color: Color(0xFF66BB6A))),
+            );
+          }
+          
+          final firebaseUser = snapshot.data;
+          
+          if (firebaseUser != null) {
+            return HomePage(userName: firebaseUser.uid); 
+          }
+          
+          return const LoginPage();
+        },
+      ),
+    );
+  }
+}
