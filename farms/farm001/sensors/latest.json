@@ -1,26 +1,26 @@
 {
   "farm_id": "farm001",
-  "updated_at": "2025-12-18T18:37:19.590381+00:00",
+  "updated_at": "2025-12-18T18:37:25.234808+00:00",
   "nodes": {
     "node_1": {
-      "server_time": "2025-12-18T18:37:19.590217+00:00",
+      "server_time": "2025-12-18T18:37:25.234156+00:00",
       "farm_id": "farm001",
       "node_id": "node_1",
       "esp32_ip": "10.42.0.138",
-      "filename": "20251218_183719_589897.jpg",
+      "filename": "20251218_183725_233850.jpg",
       "content_length": 42244,
       "interval_headers_present": 1,
-      "pir_any": 0,
+      "pir_any": 1,
       "reed_changed": 0,
       "om_any": 0,
       "ff_any": 0,
-      "min_g": 0.993,
-      "max_g": 1.015,
-      "samples": 283,
+      "min_g": 0.984,
+      "max_g": 1.022,
+      "samples": 272,
       "pir": 0,
       "reed": 0,
       "last_g": 1.003,
-      "sd_photo": "/photos/node_1_000027.jpg",
+      "sd_photo": "/photos/node_1_000028.jpg",
       "buzzer_active": 0
     }
   }
