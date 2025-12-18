@@ -3,7 +3,7 @@ name: Predator Alert
 on:
   push:
     paths:
-      - 'imgs/**'
+      - 'farms/farm001/images/**'
 
 jobs:
   notify_firebase:
@@ -27,26 +27,65 @@ jobs:
           python -c "
           import os
           import json
+          import glob
+          import re
+          from datetime import datetime
           import firebase_admin
           from firebase_admin import credentials, messaging
 
-          # Initialize
+          # --- 1. SETUP & FIND IMAGES IN THE NEW FOLDER ---
+          # We look for both .jpg and .png in your specific farm folder
+          files = glob.glob('farms/farm001/images/*.jpg') + glob.glob('farms/farm001/images/*.png')
+          
+          def parse_time(filename):
+              # Look for pattern: _YYYYMMDD_HHMMSS inside the filename
+              match = re.search(r'_(\d{8})_(\d{6})', filename)
+              if match:
+                  dt_str = match.group(1) + match.group(2)
+                  return datetime.strptime(dt_str, '%Y%m%d%H%M%S')
+              return datetime.min # Return old date if format is wrong
+
+          # Create a list of (timestamp, filename)
+          file_data = []
+          for f in files:
+              file_data.append((parse_time(f), f))
+          
+          # Sort: Newest time at index 0
+          file_data.sort(key=lambda x: x[0], reverse=True)
+
+          # --- 2. THE 10-SECOND CHECK ---
+          if len(file_data) >= 2:
+              newest_time = file_data[0][0]
+              previous_time = file_data[1][0]
+              
+              # Calculate difference in seconds
+              diff = (newest_time - previous_time).total_seconds()
+              
+              print(f'Newest Image: {newest_time}')
+              print(f'Previous Image: {previous_time}')
+              print(f'Time Difference: {diff} seconds')
+
+              if diff < 10:
+                  print('🚫 SKIPPING: Burst upload detected (< 10s difference).')
+                  exit(0) # Exit successfully, but send NO notification.
+
+          # --- 3. FIREBASE INIT (Only runs if we didn't exit above) ---
           key_json = os.environ['FIREBASE_KEY']
           cred = credentials.Certificate(json.loads(key_json))
           firebase_admin.initialize_app(cred)
 
-          # Send Alert
+          # --- 4. SEND NOTIFICATION ---
           msg = messaging.Message(
               notification=messaging.Notification(
                   title='Predator Alert',
-                  body='New activity detected on the farm.'
+                  body='New activity detected on farm001.'
               ),
               topic='farm_alerts'
           )
           
           try:
               response = messaging.send(msg)
-              print('SUCCESS: Notification sent.')
+              print('✅ SUCCESS: Notification sent.')
           except Exception as e:
               print(f'ERROR: {e}')
               exit(1)
