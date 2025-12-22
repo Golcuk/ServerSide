@@ -5874,5 +5874,34 @@
     "last_g": 0.0,
     "sd_photo": "NA",
     "buzzer_active": 0
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-22T19:31:46.839325+00:00",
+    "type": "yolo_result",
+    "node_id": "node_2",
+    "esp32_ip": "10.42.0.138",
+    "filename": "node_2_20251222_193145_986122_46517.jpg",
+    "dangerous": 0,
+    "person_hit": 1,
+    "person_threshold": 0.75,
+    "detections": [
+      {
+        "class": "person",
+        "conf": 0.8032
+      },
+      {
+        "class": "person",
+        "conf": 0.3479
+      },
+      {
+        "class": "person",
+        "conf": 0.281
+      },
+      {
+        "class": "person",
+        "conf": 0.2734
+      }
+    ]
   }
 ]
