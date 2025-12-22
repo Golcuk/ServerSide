@@ -1,26 +1,6 @@
 [
   {
     "farm_id": "farm001",
-    "server_time": "2025-12-22T21:58:36.863040+00:00",
-    "node_id": "node_1",
-    "esp32_ip": "10.42.0.233",
-    "filename": "node_1_20251222_215836_608170_43760.jpg",
-    "content_length": 43760,
-    "pir_any": 0,
-    "reed_changed": 0,
-    "om_any": 0,
-    "ff_any": 0,
-    "min_g": 0.982,
-    "max_g": 1.006,
-    "samples": 180,
-    "pir": 0,
-    "reed": 1,
-    "last_g": 0.994,
-    "sd_photo": "NA",
-    "buzzer_active": 0
-  },
-  {
-    "farm_id": "farm001",
     "server_time": "2025-12-22T21:58:42.046007+00:00",
     "node_id": "node_2",
     "esp32_ip": "10.42.0.138",
@@ -9998,5 +9978,25 @@
     "last_g": 0.949,
     "sd_photo": "NA",
     "buzzer_active": 0
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-22T22:37:28.204113+00:00",
+    "node_id": "node_2",
+    "esp32_ip": "10.42.0.138",
+    "filename": "node_2_20251222_223727_996912_60524.jpg",
+    "content_length": 60524,
+    "pir_any": 1,
+    "reed_changed": 0,
+    "om_any": 0,
+    "ff_any": 0,
+    "min_g": 0.944,
+    "max_g": 0.964,
+    "samples": 163,
+    "pir": 1,
+    "reed": 1,
+    "last_g": 0.957,
+    "sd_photo": "NA",
+    "buzzer_active": 1
   }
 ]
