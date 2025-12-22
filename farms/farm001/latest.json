@@ -1,31 +1,35 @@
 {
   "farm_id": "farm001",
-  "server_time": "2025-12-22T11:23:17.825272+00:00",
-  "node_id": "node_2",
-  "esp32_ip": "10.42.0.138",
-  "image_path": "imgs/farm001/node_2/node_2_20251222_112316_198671_50617_yolo.jpg",
+  "server_time": "2025-12-22T11:23:23.373900+00:00",
+  "node_id": "node_1",
+  "esp32_ip": "10.42.0.233",
+  "image_path": "imgs/farm001/node_1/node_1_20251222_112322_507710_63490_yolo.jpg",
   "detections": [
     {
-      "class": "person",
-      "conf": 0.8619
+      "class": "wolf",
+      "conf": 0.521
     },
     {
       "class": "person",
-      "conf": 0.3314
+      "conf": 0.3935
+    },
+    {
+      "class": "person",
+      "conf": 0.2805
     }
   ],
-  "dangerous": false,
-  "person": true,
+  "dangerous": true,
+  "person": false,
   "sensor": {
-    "pir_any": 1,
+    "pir_any": 0,
     "reed_changed": 0,
     "om_any": 0,
     "ff_any": 0,
-    "min_g": 0.942,
-    "max_g": 0.96,
-    "samples": 245,
+    "min_g": 0.975,
+    "max_g": 1.023,
+    "samples": 259,
     "pir": 0,
     "reed": 1,
-    "last_g": 0.945
+    "last_g": 0.998
   }
 }
