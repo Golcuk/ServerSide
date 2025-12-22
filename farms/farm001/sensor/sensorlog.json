@@ -233,5 +233,22 @@
         "conf": 0.3077
       }
     ]
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-22T11:59:23.134709+00:00",
+    "type": "yolo_result",
+    "node_id": "node_1",
+    "esp32_ip": "10.42.0.233",
+    "filename": "node_1_20251222_115922_194954_39104.jpg",
+    "dangerous": 0,
+    "person_hit": 1,
+    "person_threshold": 0.75,
+    "detections": [
+      {
+        "class": "person",
+        "conf": 0.9091
+      }
+    ]
   }
 ]
