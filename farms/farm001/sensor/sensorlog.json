@@ -1,43 +1,6 @@
 [
   {
     "farm_id": "farm001",
-    "server_time": "2025-12-22T19:22:57.823781+00:00",
-    "type": "yolo_result",
-    "node_id": "node_2",
-    "esp32_ip": "10.42.0.138",
-    "filename": "node_2_20251222_192256_949564_63718.jpg",
-    "dangerous": 0,
-    "person_hit": 0,
-    "person_threshold": 0.75,
-    "detections": [
-      {
-        "class": "person",
-        "conf": 0.6403
-      },
-      {
-        "class": "person",
-        "conf": 0.5983
-      },
-      {
-        "class": "person",
-        "conf": 0.4557
-      },
-      {
-        "class": "person",
-        "conf": 0.3987
-      },
-      {
-        "class": "person",
-        "conf": 0.3229
-      },
-      {
-        "class": "person",
-        "conf": 0.3009
-      }
-    ]
-  },
-  {
-    "farm_id": "farm001",
     "server_time": "2025-12-22T19:23:02.992354+00:00",
     "type": "sensor_snapshot",
     "node_id": "node_2",
@@ -10254,6 +10217,26 @@
     "pir": 0,
     "reed": 1,
     "last_g": 0.992,
+    "sd_photo": "NA",
+    "buzzer_active": 0
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-22T22:22:04.435101+00:00",
+    "node_id": "node_2",
+    "esp32_ip": "10.42.0.138",
+    "filename": "node_2_20251222_222204_220620_50723.jpg",
+    "content_length": 50723,
+    "pir_any": 1,
+    "reed_changed": 0,
+    "om_any": 1,
+    "ff_any": 0,
+    "min_g": 0.454,
+    "max_g": 1.099,
+    "samples": 176,
+    "pir": 0,
+    "reed": 1,
+    "last_g": 0.961,
     "sd_photo": "NA",
     "buzzer_active": 0
   }
