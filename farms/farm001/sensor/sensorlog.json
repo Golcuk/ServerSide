@@ -900,5 +900,22 @@
     "last_g": 0.952,
     "sd_photo": "NA",
     "buzzer_active": 1
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-22T12:00:10.032457+00:00",
+    "type": "yolo_result",
+    "node_id": "node_1",
+    "esp32_ip": "10.42.0.233",
+    "filename": "node_1_20251222_120009_176048_40824.jpg",
+    "dangerous": 0,
+    "person_hit": 1,
+    "person_threshold": 0.75,
+    "detections": [
+      {
+        "class": "person",
+        "conf": 0.8427
+      }
+    ]
   }
 ]
