@@ -7281,5 +7281,26 @@
     "person_hit": 0,
     "person_threshold": 0.75,
     "detections": []
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-22T21:46:58.586665+00:00",
+    "type": "sensor_snapshot",
+    "node_id": "node_1",
+    "esp32_ip": "10.42.0.233",
+    "filename": "node_1_20251222_214658_586405_34196.jpg",
+    "content_length": 34196,
+    "pir_any": 0,
+    "reed_changed": 0,
+    "om_any": 0,
+    "ff_any": 0,
+    "min_g": 999.0,
+    "max_g": -999.0,
+    "samples": 0,
+    "pir": 0,
+    "reed": 0,
+    "last_g": -1.0,
+    "sd_photo": "NA",
+    "buzzer_active": 0
   }
 ]
