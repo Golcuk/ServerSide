@@ -1,0 +1,31 @@
+{
+  "farm_id": "farm001",
+  "server_time": "2025-12-22T11:20:24.741637+00:00",
+  "node_id": "node_2",
+  "esp32_ip": "10.42.0.138",
+  "image_path": "imgs/farm001/node_2/node_2_20251222_112023_851639_68802_yolo.jpg",
+  "detections": [
+    {
+      "class": "person",
+      "conf": 0.8705
+    },
+    {
+      "class": "person",
+      "conf": 0.2644
+    }
+  ],
+  "dangerous": false,
+  "person": true,
+  "sensor": {
+    "pir_any": 0,
+    "reed_changed": 0,
+    "om_any": 0,
+    "ff_any": 0,
+    "min_g": 0.939,
+    "max_g": 0.961,
+    "samples": 70,
+    "pir": 0,
+    "reed": 1,
+    "last_g": 0.956
+  }
+}
