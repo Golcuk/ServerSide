@@ -1,27 +1,6 @@
 [
   {
     "farm_id": "farm001",
-    "server_time": "2025-12-22T21:42:04.396663+00:00",
-    "type": "sensor_snapshot",
-    "node_id": "node_2",
-    "esp32_ip": "10.42.0.138",
-    "filename": "node_2_20251222_214204_395605_34605.jpg",
-    "content_length": 34605,
-    "pir_any": 0,
-    "reed_changed": 0,
-    "om_any": 1,
-    "ff_any": 0,
-    "min_g": 0.857,
-    "max_g": 1.238,
-    "samples": 271,
-    "pir": 0,
-    "reed": 1,
-    "last_g": 0.957,
-    "sd_photo": "NA",
-    "buzzer_active": 0
-  },
-  {
-    "farm_id": "farm001",
     "server_time": "2025-12-22T21:42:05.299037+00:00",
     "type": "yolo_result",
     "node_id": "node_2",
@@ -9927,5 +9906,25 @@
     "last_g": 0.955,
     "sd_photo": "NA",
     "buzzer_active": 1
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-22T22:28:04.230834+00:00",
+    "node_id": "node_1",
+    "esp32_ip": "10.42.0.233",
+    "filename": "node_1_20251222_222804_000433_49170.jpg",
+    "content_length": 49170,
+    "pir_any": 0,
+    "reed_changed": 0,
+    "om_any": 0,
+    "ff_any": 0,
+    "min_g": 0.983,
+    "max_g": 1.002,
+    "samples": 176,
+    "pir": 0,
+    "reed": 1,
+    "last_g": 0.985,
+    "sd_photo": "NA",
+    "buzzer_active": 0
   }
 ]
