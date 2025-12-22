@@ -1672,5 +1672,22 @@
     "last_g": 0.951,
     "sd_photo": "NA",
     "buzzer_active": 0
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-22T12:10:30.922301+00:00",
+    "type": "yolo_result",
+    "node_id": "node_1",
+    "esp32_ip": "10.42.0.233",
+    "filename": "node_1_20251222_121030_074144_62155.jpg",
+    "dangerous": 1,
+    "person_hit": 0,
+    "person_threshold": 0.75,
+    "detections": [
+      {
+        "class": "wolf",
+        "conf": 0.7319
+      }
+    ]
   }
 ]
