@@ -1,35 +1,35 @@
 {
   "farm_id": "farm001",
-  "server_time": "2025-12-22T11:23:23.373900+00:00",
+  "server_time": "2025-12-22T11:23:29.960293+00:00",
   "node_id": "node_1",
   "esp32_ip": "10.42.0.233",
-  "image_path": "imgs/farm001/node_1/node_1_20251222_112322_507710_63490_yolo.jpg",
+  "image_path": "imgs/farm001/node_1/node_1_20251222_112328_839790_62440_yolo.jpg",
   "detections": [
     {
       "class": "wolf",
-      "conf": 0.521
+      "conf": 0.7323
     },
     {
       "class": "person",
-      "conf": 0.3935
+      "conf": 0.4959
     },
     {
       "class": "person",
-      "conf": 0.2805
+      "conf": 0.4202
     }
   ],
   "dangerous": true,
   "person": false,
   "sensor": {
-    "pir_any": 0,
+    "pir_any": 1,
     "reed_changed": 0,
     "om_any": 0,
     "ff_any": 0,
-    "min_g": 0.975,
-    "max_g": 1.023,
-    "samples": 259,
+    "min_g": 0.983,
+    "max_g": 1.025,
+    "samples": 242,
     "pir": 0,
     "reed": 1,
-    "last_g": 0.998
+    "last_g": 0.992
   }
 }
