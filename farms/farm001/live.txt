@@ -1,1 +1,1 @@
-node1onnode2off
+node1offnode2on
