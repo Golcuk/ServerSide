@@ -3260,5 +3260,24 @@
     "reed": 1,
     "last_g": 0.911,
     "buzzer_active": 0
+  },
+  {
+    "farm_id": "farm001",
+    "server_time": "2025-12-23T07:39:14.047843+00:00",
+    "node_id": "node_1",
+    "esp32_ip": "10.42.0.233",
+    "filename": "node_1_20251223_073914_047284_39473.jpg",
+    "content_length": 39473,
+    "pir_any": 1,
+    "reed_changed": 0,
+    "om_any": 1,
+    "ff_any": 1,
+    "min_g": 0.292,
+    "max_g": 3.43,
+    "samples": 180,
+    "pir": 1,
+    "reed": 1,
+    "last_g": 0.997,
+    "buzzer_active": 0
   }
 ]
